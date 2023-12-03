@@ -19,10 +19,13 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    // Register new user
     @PostMapping("/register")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body){
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
+
+    // Login with user
 
     @PostMapping("/login")
     public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){

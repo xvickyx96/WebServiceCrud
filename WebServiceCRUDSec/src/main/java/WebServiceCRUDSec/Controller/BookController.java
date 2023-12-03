@@ -16,6 +16,8 @@ public class BookController {
 
     final private BookService bookService;
 
+
+    // Add book
     @PostMapping("")
     public ResponseEntity<Book> addBook(
             @RequestBody Book book
@@ -25,12 +27,14 @@ public class BookController {
         return ResponseEntity.ok(newBook);
     }
 
+    // Get all books
     @GetMapping("")
     public ResponseEntity<List<Book>> getBooks () {
 
         return ResponseEntity.ok(bookService.getAllBooks());
     }
 
+    // Get book with ID
     @GetMapping("/{id}")
     public ResponseEntity<Book> getOneBook(
             @PathVariable Long id

@@ -18,33 +18,37 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    //Save to DB
     public Book saveBook(Book book) {
-        //Spara book till DB
+
         return bookRepository.save(book);
     }
+    // Get all books from DB
+    public List<Book> getAllBooks()
+    {
 
-    public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
-    public Optional<Book> getBookById(Long id) {
+    // Get a book with ID
+    public Optional<Book> getBookById(Long id)
+    {
+
         return bookRepository.findById(id);
     }
 
-    public Optional<Book> getBookByTitle(String title) {
-        return bookRepository.findByTitle(title);
-    }
 
+    // Update book with ID
     public Book updateBook(Long id, Book updatedBook) {
-        // Kontrollera om boken med angivet id existerar
+        // Control if a book exist with ID
         Optional<Book> existingBook = bookRepository.findById(id);
 
         if (existingBook.isPresent()) {
-            // Uppdatera befintlig bok med nya uppgifter
+            // Update book with new info
             updatedBook.setId(id);
             return bookRepository.save(updatedBook);
         } else {
-            // Boken finns inte
+            // The book does not exist
             throw new IllegalArgumentException("Book with id " + id + " not found");
         }
     }

@@ -5,8 +5,8 @@ import WebServiceCRUDSec.Service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/user")
@@ -22,7 +22,7 @@ public class Endpoints {
     }
 
 
-
+// Update book
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
         Optional<Book> existingBook = bookService.getBookById(id);
@@ -37,6 +37,8 @@ public class Endpoints {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Delete book
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
